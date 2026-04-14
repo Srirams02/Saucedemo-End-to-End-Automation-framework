@@ -4,25 +4,22 @@ on:
   push:
     branches: [ "main" ]
   schedule:
-    - cron: '0 10 * * *'   # daily run
+    - cron: '0 10 * * *'
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      # ✅ Checkout code
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # ✅ Setup Java
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      # ✅ Cache Maven dependencies (faster builds)
       - name: Cache Maven packages
         uses: actions/cache@v3
         with:
@@ -31,22 +28,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      # ✅ Install dependencies
       - name: Install Dependencies
         run: mvn clean install -DskipTests
 
-      # 🔥 IMPORTANT — Run tests in CI mode
       - name: Run Tests
         run: mvn test -Denv=ci
 
-      # ✅ Upload Allure raw results
       - name: Upload Allure Results
         uses: actions/upload-artifact@v4
         with:
           name: allure-results
           path: target/allure-results
 
-      # 🔥 OPTIONAL (NEXT STEP) — Generate Allure Report UI
       - name: Generate Allure Report
         if: always()
         run: mvn io.qameta.allure:allure-maven:report
@@ -57,3 +50,22 @@ jobs:
         with:
           name: allure-report
           path: target/site/allure-maven-plugin
+
+      - name: Send Email Notification
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "Automation Test Report - GitHub Actions"
+          to: ${{ secrets.EMAIL_TO }}
+          from: ${{ secrets.EMAIL_USERNAME }}
+          body: |
+            Automation Test Execution Completed.
+
+            Repository: ${{ github.repository }}
+            Run ID: ${{ github.run_id }}
+
+            Allure report available in GitHub Actions artifacts.

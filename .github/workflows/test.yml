@@ -51,6 +51,19 @@ jobs:
           name: allure-report
           path: target/site/allure-maven-plugin
 
+      - name: Extract Test Summary
+        if: always()
+        run: |
+          PASSED=$(grep -r '"status":"passed"' target/allure-results | wc -l)
+          FAILED=$(grep -r '"status":"failed"' target/allure-results | wc -l)
+          BROKEN=$(grep -r '"status":"broken"' target/allure-results | wc -l)
+          TOTAL=$((PASSED + FAILED + BROKEN))
+
+          echo "PASSED=$PASSED" >> $GITHUB_ENV
+          echo "FAILED=$FAILED" >> $GITHUB_ENV
+          echo "BROKEN=$BROKEN" >> $GITHUB_ENV
+          echo "TOTAL=$TOTAL" >> $GITHUB_ENV
+
       - name: Send Email Notification
         if: always()
         uses: dawidd6/action-send-mail@v3
@@ -63,7 +76,12 @@ jobs:
           to: ${{ secrets.EMAIL_TO }}
           from: ${{ secrets.EMAIL_USERNAME }}
           body: |
-            Automation Test Execution Completed.
+            Automation Test Execution Completed
+
+            Total Tests: ${{ env.TOTAL }}
+            Passed: ${{ env.PASSED }}
+            Failed: ${{ env.FAILED }}
+            Broken: ${{ env.BROKEN }}
 
             Repository: ${{ github.repository }}
             Run ID: ${{ github.run_id }}

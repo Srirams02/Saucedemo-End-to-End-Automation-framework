@@ -2,7 +2,6 @@ package base;
 
 import com.codeborne.selenide.Configuration;
 import config.ConfigManager;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -11,27 +10,39 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
 
-        // ✅ Basic configuration
+        // ✅ Basic config
         Configuration.browser = ConfigManager.get("browser");
         Configuration.baseUrl = ConfigManager.get("base.url");
-        Configuration.timeout = Long.parseLong(ConfigManager.get("timeout"));
-        Configuration.headless = false;
+        Configuration.timeout = 10000;
         Configuration.screenshots = true;
         Configuration.savePageSource = true;
-        Configuration.timeout = 10000;
 
-        // ✅ Chrome setup
+        // 🔥 IMPORTANT — HEADLESS FOR CI
+        String env = System.getProperty("env", "local");
+
+        if (env.equals("ci")) {
+            Configuration.headless = true;
+            Configuration.browserSize = "1920x1080";
+        } else {
+            Configuration.headless = false;
+        }
+
+        // ✅ Chrome options
         ChromeOptions options = new ChromeOptions();
 
-        // 🔹 Use fresh browser profile (fix popup issue)
+        // 🔥 CI-safe options
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+
+        // 🔹 Local stability
         options.addArguments("--incognito");
+        options.addArguments("--disable-notifications");
 
         // 🔹 Disable password manager
         Map<String, Object> prefs = new HashMap<>();
@@ -39,17 +50,10 @@ public class BaseTest {
         prefs.put("profile.password_manager_enabled", false);
         options.setExperimentalOption("prefs", prefs);
 
-        // 🔹 Disable notifications
-        options.addArguments("--disable-notifications");
-
         Configuration.browserCapabilities = options;
 
-        // ✅ Start browser
+        // ✅ Open app
         open("/");
-
-        // ✅ Maximize window properly
-        WebDriver driver = getWebDriver();
-        driver.manage().window().maximize();
     }
 
     @AfterMethod

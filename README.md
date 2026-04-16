@@ -6,21 +6,21 @@
 
 ## 🔥 Why This Project Stands Out
 
-* ✔ End-to-end user journey automation (Login → Cart → Checkout)
-* ✔ CI/CD with **push**, **schedule (cron)**, and **manual** triggers
-* ✔ **Allure** reports (artifacts) with step-level insights
-* ✔ **HTML email reports** with dynamic pie chart 📊
-* ✔ **Headless execution** for CI environments
-* ✔ Clean, scalable **Page Object Model (POM)** architecture
+* End-to-end user journey automation (Login → Cart → Checkout)
+* CI/CD with **push**, **schedule (cron)**, and **manual** triggers
+* **Allure** reports with detailed insights
+* **HTML email reports** with dynamic pie chart 📊
+* **Headless execution** for CI environments
+* Scalable **Page Object Model (POM)** architecture
 
 ---
 
 ## 🧠 What This Demonstrates
 
-* Framework design (POM + utilities + data providers)
-* CI/CD pipeline design and reliability considerations
-* Reporting, monitoring, and stakeholder communication
-* Real-world regression flow for an e-commerce app
+* Framework design using POM
+* CI/CD pipeline integration
+* Reporting and monitoring
+* Real-world automation workflow
 
 ---
 
@@ -29,21 +29,21 @@
 ### Triggers
 
 * Push to `main`
-* Daily schedule (cron)
-* Manual run (`workflow_dispatch`)
+* Daily scheduled execution
+* Manual trigger
 
 ### Flow
 
 ```text
 Push / Schedule / Manual
         ↓
-GitHub Actions (JDK 17)
+GitHub Actions
         ↓
 Build (Maven)
         ↓
 Test Execution (Headless)
         ↓
-Allure Results → HTML Report
+Allure Report
         ↓
 Summary Extraction
         ↓
@@ -54,130 +54,101 @@ Email Notification 📧
 
 ## 📸 Execution Proof
 
-The following screenshots provide visual confirmation of the framework in action, covering CI/CD execution, reporting, and automated notifications.
-
-These demonstrate that the automation pipeline is fully functional—from test execution to reporting and result communication.
-
----
+The following screenshots demonstrate the complete automation pipeline in action—from execution to reporting and notification.
 
 ### 🔹 CI Pipeline
-<img width="1895" height="849" alt="image" src="https://github.com/user-attachments/assets/8b98ba36-485b-4a93-8339-c264925357c3" />
 
-> Shows successful execution of the CI pipeline via GitHub Actions, including build, test run, reporting, and email notification steps.
+<img width="1895" height="849" src="https://github.com/user-attachments/assets/8b98ba36-485b-4a93-8339-c264925357c3" />
+
+> CI pipeline execution with test run, reporting, and email notification.
 
 ---
 
 ### 🔹 Allure Dashboard
-<img width="1915" height="956" alt="image" src="https://github.com/user-attachments/assets/8bd2375d-ca90-4459-9f78-e1f102efe164" />
 
-> Provides a high-level summary of test results with pass/fail distribution and overall execution status.
+<img width="1915" height="956" src="https://github.com/user-attachments/assets/8bd2375d-ca90-4459-9f78-e1f102efe164" />
+
+> High-level summary of test execution results.
 
 ---
 
 ### 🔹 Allure Test Details
-<img width="1088" height="947" alt="image" src="https://github.com/user-attachments/assets/be2e511c-6342-40de-8d3c-5fe46eeca30d" />
 
-> Displays detailed test execution steps, enabling easier debugging and analysis of test behavior.
+<img width="1088" height="947" src="https://github.com/user-attachments/assets/be2e511c-6342-40de-8d3c-5fe46eeca30d" />
 
----
-
-### 🔹 Email Report (HTML + Chart)
-<img width="1061" height="893" alt="image" src="https://github.com/user-attachments/assets/45f80dc7-614a-40d8-a72d-772867b5f7b8" />
-
-> Automated email notification containing test summary, pass/fail metrics and visual chart representation.
+> Detailed test steps for debugging and analysis.
 
 ---
 
-### 🔹 Project Structure (IDE)
-<img width="267" height="717" alt="image" src="https://github.com/user-attachments/assets/26736dea-8fa8-4b84-b3c3-0f0895933f69" />
+### 🔹 Email Report
 
-> Illustrates the organized project structure following Page Object Model and modular design principles.
+<img width="1061" height="893" src="https://github.com/user-attachments/assets/45f80dc7-614a-40d8-a72d-772867b5f7b8" />
+
+> Automated email with execution summary and chart.
+
+---
+
+### 🔹 Project Structure
+
+<img width="267" height="717" src="https://github.com/user-attachments/assets/26736dea-8fa8-4b84-b3c3-0f0895933f69" />
+
+> Organized framework structure following POM.
 
 ---
 
 ## 🧪 Automated Test Scenarios Covered
 
 ### 🔹 Authentication & Login
-- ✔ Verify successful login with valid credentials  
-- ✔ Validate error message for invalid credentials  
-- ✔ Validate locked-out user login restriction  
-- ✔ Ensure session is maintained after login  
+
+* Verify successful login with valid credentials
+* Validate error message for invalid credentials
 
 ---
 
 ### 🔹 Inventory / Product Page
-- ✔ Verify products are displayed correctly after login  
-- ✔ Validate sorting functionality (Low → High price)  
-- ✔ Verify product details (name, price, add/remove button)  
-- ✔ Validate adding multiple items to cart  
+
+* Verify inventory page loads after login
+* Validate products are displayed
+* Validate sorting (Price: Low → High)
+* Verify products are sorted correctly
+* Add item to cart
 
 ---
 
 ### 🔹 Cart Functionality
-- ✔ Verify items added are reflected in cart  
-- ✔ Validate cart badge count updates dynamically  
-- ✔ Verify item removal from cart  
-- ✔ Validate cart page displays correct items  
+
+* Navigate to cart page
+* Verify cart page is loaded
+* Verify item presence in cart
+* Remove item from cart
+* Validate cart item count
 
 ---
 
 ### 🔹 Checkout Workflow
-- ✔ Validate navigation from cart to checkout  
-- ✔ Verify user details form submission  
-- ✔ Validate error handling for missing fields  
-- ✔ Ensure checkout continues to overview page  
+
+* Navigate from cart to checkout
+* Verify checkout page is loaded
+* Enter user details
+* Continue checkout process
 
 ---
 
-### 🔹 Order Completion (End-to-End)
-- ✔ Complete full purchase flow successfully  
-- ✔ Validate success message after order completion  
-- ✔ Ensure cart is cleared after checkout  
-- ✔ Verify end-to-end user journey integrity  
+### 🔹 Order Completion (End-to-End Flow)
+
+* Complete full purchase flow
+* Validate order success message
+
 ---
 
-## 📂 Project Structure (Detailed)
+## 📂 Project Structure
 
 ```text
-src
-├── main
-│   └── java
-│       ├── pages
-│       │   ├── LoginPage.java        → Login actions & validations
-│       │   ├── InventoryPage.java    → Products, sorting, cart entry
-│       │   ├── CartPage.java         → Cart verification & removal
-│       │   └── CheckoutPage.java     → User info & order completion
-│       │
-│       ├── utils
-│       │   ├── ConfigManager.java    → Reads env/config properties
-│       │   ├── ExcelUtils.java       → (Optional) data-driven support
-│       │   └── WaitUtils.java        → Custom waits (if needed)
-│       │
-│       ├── config
-│       │   └── config.properties     → Base URL, browser, timeouts
-│       │
-│       └── constants
-│           └── FrameworkConstants.java → Reusable constants
-│
-├── test
-│   └── java
-│       ├── tests
-│       │   ├── LoginTests.java       → Login scenarios
-│       │   ├── CartTests.java        → Cart validations
-│       │   ├── CheckoutTests.java    → Checkout flow
-│       │   └── E2ETests.java         → Full E2E scenarios
-│       │
-│       ├── base
-│       │   └── BaseTest.java         → Setup (headless for CI), teardown
-│       │
-│       ├── dataproviders
-│       │   └── LoginDataProvider.java → Data-driven inputs
-│       │
-│       └── listeners (optional)
-│           └── Allure/TestNG listeners
-│
-└── resources
-    └── testdata
+pages        → Page Object classes  
+tests        → Test scenarios  
+base         → Test setup  
+utils        → Utility classes  
+dataproviders→ Test data handling  
 ```
 
 ---
@@ -186,36 +157,35 @@ src
 
 ### 🔹 Allure
 
-* Dashboard + trends + step logs
+* Execution dashboard
+* Step-level insights
 * Failure diagnostics
-  📌 Available in **Actions → Artifacts → allure-report**
 
-### 🔹 Email (Advanced)
+### 🔹 Email
 
-* Total / Passed / Failed / Broken
-* Pie chart visualization
-* Direct link to the workflow run
+* Test summary
+* Pass/Fail metrics
+* Chart visualization
 
 ---
 
 ## 📅 Scheduled Execution
 
-```text
-Runs daily at 6:30 PM IST (cron in UTC)
-```
+Runs daily at **6:30 PM IST**
+
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer          | Tool                      |
-| -------------- | ------------------------- |
-| Language       | Java                      |
-| UI Automation  | Selenide                  |
-| Test Framework | TestNG                    |
-| Build          | Maven                     |
-| CI/CD          | GitHub Actions            |
-| Reporting      | Allure                    |
-| Notification   | SMTP (Gmail App Password) |
+| Layer        | Tool           |
+| ------------ | -------------- |
+| Language     | Java           |
+| Automation   | Selenide       |
+| Framework    | TestNG         |
+| Build        | Maven          |
+| CI/CD        | GitHub Actions |
+| Reporting    | Allure         |
+| Notification | SMTP           |
 
 ---
 
@@ -237,28 +207,9 @@ mvn io.qameta.allure:allure-maven:serve
 
 ## 🔐 GitHub Secrets
 
-| Name           | Purpose            |
-| -------------- | ------------------ |
-| EMAIL_USERNAME | Sender Gmail       |
-| EMAIL_PASSWORD | Gmail App Password |
-| EMAIL_TO       | Recipient(s)       |
-
----
-
-## 🧠 Design Decisions
-
-* **Selenide over Selenium**: built-in waits, concise API, reduced flakiness
-* **Headless in CI**: faster, no UI dependency, stable in Linux runners
-* **Allure**: rich, industry-standard reporting
-* **Email summaries**: instant visibility for stakeholders
-
----
-
-## 🔮 Future Enhancements
-
-* Env profiles (dev/qa/prod)
-* Dockerized test runs
-* API + UI hybrid flows
+* EMAIL_USERNAME
+* EMAIL_PASSWORD
+* EMAIL_TO
 
 ---
 
@@ -266,11 +217,11 @@ mvn io.qameta.allure:allure-maven:serve
 
 **Sriram S**
 
-- 🔗 GitHub: https://github.com/Srirams02 
-- 💼 LinkedIn: www.linkedin.com/in/sriram-s-a6947423a
+* GitHub: https://github.com/Srirams02
+* LinkedIn: https://www.linkedin.com/in/sriram-s-a6947423a
 
 ---
 
 ## ⭐ Final Note
 
-This repository demonstrates a complete automation pipeline integrating UI testing, CI/CD workflows, reporting, and automated notifications, reflecting real-world SDET and DevOps practices.
+Built to simulate a real-world automation pipeline with CI/CD, reporting, and automated notifications.

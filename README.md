@@ -217,8 +217,8 @@ mvn io.qameta.allure:allure-maven:serve
 
 **Sriram S**
 
-* GitHub: https://github.com/Srirams02
-* LinkedIn: https://www.linkedin.com/in/sriram-s-a6947423a
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="18"/> <a href="https://github.com/Srirams02">GitHub</a> &nbsp; | &nbsp;
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="18"/> <a href="https://www.linkedin.com/in/sriram-s-a6947423a">LinkedIn</a>
 
 ---
 

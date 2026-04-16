@@ -99,45 +99,27 @@ The following screenshots demonstrate the complete automation pipeline in action
 ## 🧪 Automated Test Scenarios Covered
 
 ### 🔹 Authentication & Login
-
-* Verify successful login with valid credentials
-* Validate error message for invalid credentials
+- Verify successful login with valid credentials  
+- Validate error message for invalid credentials  
+- Validate locked-out user login restriction  
+- Validate login with multiple user types (standard, locked, invalid, performance)  
+- Validate performance user login behavior  
 
 ---
 
 ### 🔹 Inventory / Product Page
-
-* Verify inventory page loads after login
-* Validate products are displayed
-* Validate sorting (Price: Low → High)
-* Verify products are sorted correctly
-* Add item to cart
+- Verify inventory page loads successfully after login  
+- Add item to cart  
+- Remove item from cart  
+- Validate sorting functionality (Price: Low → High)  
 
 ---
 
-### 🔹 Cart Functionality
-
-* Navigate to cart page
-* Verify cart page is loaded
-* Verify item presence in cart
-* Remove item from cart
-* Validate cart item count
-
----
-
-### 🔹 Checkout Workflow
-
-* Navigate from cart to checkout
-* Verify checkout page is loaded
-* Enter user details
-* Continue checkout process
-
----
-
-### 🔹 Order Completion (End-to-End Flow)
-
-* Complete full purchase flow
-* Validate order success message
+### 🔹 Cart & Checkout Flow
+- Add item to cart and proceed with flow  
+- Remove item from cart  
+- Complete end-to-end purchase flow  
+- Validate successful order completion message  
 
 ---
 
